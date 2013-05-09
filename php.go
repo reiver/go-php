@@ -38,7 +38,6 @@ func IsNumeric(x interface{}) bool {
 
 			case complex64:
 				result = true
-
 			case complex128:
 				result = true
 
