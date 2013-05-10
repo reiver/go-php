@@ -21,6 +21,7 @@ func TestStrposRune(t *testing.T) {
 
 
 
+	offset = 0
 	haystack = ""
 	needle = 'c'
 
@@ -29,6 +30,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "bdfhjlnprtvxz"
 	needle = 'c'
 
@@ -37,6 +39,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "c"
 	needle = 'c'
 	expectedPos = 0
@@ -48,6 +51,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "ac"
 	needle = 'c'
 	expectedPos = 1
@@ -59,6 +63,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "aci"
 	needle = 'c'
 	expectedPos = 1
@@ -70,6 +75,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "cic"
 	needle = 'c'
 	expectedPos = 0
@@ -81,6 +87,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "acic"
 	needle = 'c'
 	expectedPos = 1
@@ -91,6 +98,7 @@ func TestStrposRune(t *testing.T) {
 		t.Errorf("When calling StrposRune() expected pos = [%v] but instead of pos = [%v] for haystack = [%v] and needle = [%v].", expectedPos, pos, haystack, needle)
 	}
 
+	offset = 0
 	haystack = "acicw"
 	needle = 'c'
 	expectedPos = 1
@@ -102,6 +110,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "BaCbDcEdFeGfHgIhJiKjLkMlNmOnPoQpRqSrTsUtVuWvXwYxZyAz"
 	needle = 'c'
 	expectedPos = 5
@@ -113,6 +122,7 @@ func TestStrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "BzaCybDxcEwdFveGufHtgIshJriKqjLpkMolNnmOmnPloQkpRqjSriTshUtgVufWveXwdYxcZybAza"
 	needle = 'c'
 	expectedPos = 8
@@ -140,6 +150,7 @@ func TestStrrposRune(t *testing.T) {
 
 
 
+	offset = 0
 	haystack = ""
 	needle = 'c'
 
@@ -148,6 +159,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "bdfhjlnprtvxz"
 	needle = 'c'
 
@@ -156,6 +168,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "c"
 	needle = 'c'
 	expectedPos = 0
@@ -167,6 +180,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "ac"
 	needle = 'c'
 	expectedPos = 1
@@ -178,6 +192,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "aci"
 	needle = 'c'
 	expectedPos = 1
@@ -189,6 +204,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "cic"
 	needle = 'c'
 	expectedPos = 2
@@ -200,6 +216,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "acic"
 	needle = 'c'
 	expectedPos = 3
@@ -210,6 +227,7 @@ func TestStrrposRune(t *testing.T) {
 		t.Errorf("When calling StrrposRune() expected pos = [%v] but instead of pos = [%v] for haystack = [%v] and needle = [%v].", expectedPos, pos, haystack, needle)
 	}
 
+	offset = 0
 	haystack = "acicw"
 	needle = 'c'
 	expectedPos = 3
@@ -221,6 +239,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "BaCbDcEdFeGfHgIhJiKjLkMlNmOnPoQpRqSrTsUtVuWvXwYxZyAz"
 	needle = 'c'
 	expectedPos = 5
@@ -232,6 +251,7 @@ func TestStrrposRune(t *testing.T) {
 	}
 
 
+	offset = 0
 	haystack = "BzaCybDxcEwdFveGufHtgIshJriKqjLpkMolNnmOmnPloQkpRqjSriTshUtgVufWveXwdYxcZybAza"
 	needle = 'c'
 	expectedPos = 71
