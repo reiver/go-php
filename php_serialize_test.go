@@ -67,6 +67,30 @@ func TestSerializeString(t *testing.T) {
 
 
 
+func TestSerializeMapWithStringKeys(t *testing.T) {
+
+	var serialized string
+	var expected1, expected2, expected3, expected4, expected5, expected6 string
+
+	var x map[string]interface{}
+
+
+
+	x = map[string]interface{}{"one":"a", "two":"bb", "three":"ccc"}
+	expected1 = "a:3:{s:3:\"one\";s:1:\"a\";s:3:\"two\";s:2:\"bb\";s:5:\"three\";s:3:\"ccc\";}"
+	expected2 = "a:3:{s:3:\"one\";s:1:\"a\";s:5:\"three\";s:3:\"ccc\";s:3:\"two\";s:2:\"bb\";}"
+	expected3 = "a:3:{s:3:\"two\";s:2:\"bb\";s:3:\"one\";s:1:\"a\";s:5:\"three\";s:3:\"ccc\";}"
+	expected4 = "a:3:{s:5:\"three\";s:3:\"ccc\";s:3:\"one\";s:1:\"a\";s:3:\"two\";s:2:\"bb\";}"
+	expected5 = "a:3:{s:3:\"two\";s:2:\"bb\";s:5:\"three\";s:3:\"ccc\";s:3:\"one\";s:1:\"a\";}"
+	expected6 = "a:3:{s:5:\"three\";s:3:\"ccc\";s:3:\"two\";s:2:\"bb\";s:3:\"one\";s:1:\"a\";}"
+
+	if serialized = Serialize(x); expected1 != serialized && expected2 != serialized && expected3 != serialized && expected4 != serialized && expected5 != serialized && expected6 != serialized  {
+		t.Errorf("Serialize() did not serialize [%#v] as expected [%#v] | [%#v] | [%#v] | [%#v] | [%#v] | [%#v]. Instead got [%#v].", x, expected1, expected2, expected3, expected4, expected5, expected6, serialized)
+	}
+}
+
+
+
 func TestSerializeArray(t *testing.T) {
 
 	var serialized string
