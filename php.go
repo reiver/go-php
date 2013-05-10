@@ -157,14 +157,14 @@ func Serialize(x interface{}) string {
 				serialized = "i:"+ strconv.FormatInt(int64(x.(int64)), 10) +";"
 
 			case float32:
-				serialized = ""
+				serialized = serializeFloat32(x.(float32))
 			case float64:
-				serialized = ""
+				serialized = serializeFloat64(x.(float64))
 
 			case complex64:
-				serialized = ""
+				serialized = "a:2:{s:4:\"real\";"+ serializeFloat32(real(x.(complex64))) +"s:4:\"imag\";"+ serializeFloat32(imag(x.(complex64))) +"}"
 			case complex128:
-				serialized = ""
+				serialized = "a:2:{s:4:\"real\";"+ serializeFloat64(real(x.(complex128))) +"s:4:\"imag\";"+ serializeFloat64(imag(x.(complex128))) +"}"
 
 			//case byte:
 			//	serialized = "i:"+ strconv.FormatInt(int64(x.(byte)), 10) +";"
@@ -185,4 +185,14 @@ func Serialize(x interface{}) string {
 
 	// Return.
 		return serialized	
+}
+
+func serializeFloat32(x float32) string {
+//@TODO
+	return ""
+}
+
+func serializeFloat64(x float64) string {
+//@TODO
+	return ""
 }
