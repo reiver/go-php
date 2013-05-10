@@ -135,9 +135,6 @@ func Serialize(x interface{}) string {
 		serialized := ""
 
 		switch x.(type) {
-			default:
-				serialized = ""
-
 			case uint8:
 				serialized = "i:"+ strconv.FormatUint(uint64(x.(uint8)), 10) +";"
 			case uint16:
@@ -179,7 +176,28 @@ func Serialize(x interface{}) string {
 			case string:
 				serialized = "s:"+ strconv.FormatInt(int64(len(x.(string))), 10) +":\""+ x.(string) +"\";"
 
-//@TODO: Add support for maps, slices and arrays
+
+			case []interface{}:
+				serialized = "a:3:{"
+				for i := 0; i < len(x.([]interface{})); i++ {
+					serialized += Serialize(i)
+					serialized += Serialize(x.([]interface{})[i])
+				}
+				serialized += "}"
+
+			case map[string]interface{}:
+				serialized = "a:"+ strconv.FormatInt(int64(len(x.(map[string]interface{}))), 10) +":{"
+				for key, value := range x.(map[string]interface{}) {
+					serialized += Serialize(key)
+					serialized += Serialize(value)
+				}
+				serialized += "}"
+
+			default:
+				serialized = ""
+
+
+//@TODO: Add support for arrays
 		} // switch
 
 
