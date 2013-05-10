@@ -87,6 +87,16 @@ func TestSerializeMapWithStringKeys(t *testing.T) {
 	if serialized = Serialize(x); expected1 != serialized && expected2 != serialized && expected3 != serialized && expected4 != serialized && expected5 != serialized && expected6 != serialized  {
 		t.Errorf("Serialize() did not serialize [%#v] as expected [%#v] | [%#v] | [%#v] | [%#v] | [%#v] | [%#v]. Instead got [%#v].", x, expected1, expected2, expected3, expected4, expected5, expected6, serialized)
 	}
+
+
+	x = map[string]interface{}{"apple":"banana", "cherry":"watermelon"}
+	expected1 = "a:2:{s:5:\"apple\";s:6:\"banana\";s:6:\"cherry\";s:10:\"watermelon\";}"
+	expected2 = "a:2:{s:6:\"cherry\";s:10:\"watermelon\";s:5:\"apple\";s:6:\"banana\";}"
+
+
+	if serialized = Serialize(x); expected1 != serialized && expected2 != serialized {
+		t.Errorf("Serialize() did not serialize [%#v] as expected [%#v] | [%#v]. Instead got [%#v].", x, expected1, expected2, serialized)
+	}
 }
 
 
