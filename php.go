@@ -167,9 +167,9 @@ func Serialize(x interface{}) string {
 				serialized = ""
 
 			//case byte:
-			//	serialized = "i:"+ strconv.FormatInt(x.(byte), 10) +";"
+			//	serialized = "i:"+ strconv.FormatInt(int64(x.(byte)), 10) +";"
 			//case rune:
-			//	serialized = "i:"+ strconv.FormatInt(x.(rune), 10) +";"
+			//	serialized = "i:"+ strconv.FormatInt(int64(x.(rune)), 10) +";"
 
 			case uint:
 				serialized = "i:"+ strconv.FormatUint(uint64(x.(uint)), 10) +";"
