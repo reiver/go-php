@@ -178,7 +178,7 @@ func Serialize(x interface{}) string {
 
 
 			case []interface{}:
-				serialized = "a:3:{"
+				serialized = "a:"+ strconv.FormatInt(int64(len(x.([]interface{}))), 10) +":{"
 				for i := 0; i < len(x.([]interface{})); i++ {
 					serialized += Serialize(i)
 					serialized += Serialize(x.([]interface{})[i])
