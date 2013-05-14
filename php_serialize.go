@@ -22,35 +22,43 @@ func Serialize(x interface{}) string {
 		switch x.(type) {
 			case uint8:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatUint() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatUint(uint64(x.(uint8)), 10)   )
 				serialized.WriteString(";")
 			case uint16:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatUint() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatUint(uint64(x.(uint16)), 10)   )
 				serialized.WriteString(";")
 			case uint32:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatUint() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatUint(uint64(x.(uint32)), 10)   )
 				serialized.WriteString(";")
 			case uint64:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatUint() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatUint(uint64(x.(uint64)), 10)   )
 				serialized.WriteString(";")
 
 			case int8:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(x.(int8)), 10)   )
 				serialized.WriteString(";")
 			case int16:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(x.(int16)), 10)   )
 				serialized.WriteString(";")
 			case int32:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(x.(int32)), 10)   )
 				serialized.WriteString(";")
 			case int64:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(x.(int64)), 10)   )
 				serialized.WriteString(";")
 
@@ -83,15 +91,18 @@ func Serialize(x interface{}) string {
 
 			case uint:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatUint() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatUint(uint64(x.(uint)), 10)   )
 				serialized.WriteString(";")
 			case int:
 				serialized.WriteString("i:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(x.(int)), 10)   )
 				serialized.WriteString(";")
 
 			case string:
 				serialized.WriteString("s:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(len(x.(string))), 10)   )
 				serialized.WriteString(":\"")
 				serialized.WriteString(   x.(string)   )
@@ -100,6 +111,7 @@ func Serialize(x interface{}) string {
 
 			case []interface{}:
 				serialized.WriteString("a:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(len(x.([]interface{}))), 10)   )
 				serialized.WriteString(":{")
 				for i := 0; i < len(x.([]interface{})); i++ {
@@ -110,6 +122,7 @@ func Serialize(x interface{}) string {
 
 			case map[string]interface{}:
 				serialized.WriteString("a:")
+				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
 				serialized.WriteString(   strconv.FormatInt(int64(len(x.(map[string]interface{}))), 10)   )
 				serialized.WriteString(":{")
 				for key, value := range x.(map[string]interface{}) {
