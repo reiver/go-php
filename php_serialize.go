@@ -9,10 +9,15 @@ import (
 
 
 
+type myByteBuffer struct {
+	bytes.Buffer
+}
+
+
 func Serialize(x interface{}) string {
 
 	// Initialize.
-		var serialized bytes.Buffer
+		var serialized myByteBuffer
 
 		switch x.(type) {
 			case uint8:
@@ -50,21 +55,21 @@ func Serialize(x interface{}) string {
 				serialized.WriteString(";")
 
 			case float32:
-				serialized.WriteString(   serializeFloat32(x.(float32))   )
+				serialized.writeSerializedFloat32(   x.(float32)   )
 			case float64:
-				serialized.WriteString(   serializeFloat64(x.(float64))   )
+				serialized.writeSerializedFloat64(   x.(float64)   )
 
 			case complex64:
 				serialized.WriteString("a:2:{s:4:\"real\";")
-				serialized.WriteString(   serializeFloat32(real(x.(complex64)))   )
+				serialized.writeSerializedFloat32(   real(x.(complex64))   )
 				serialized.WriteString("s:4:\"imag\";")
-				serialized.WriteString(   serializeFloat32(imag(x.(complex64)))   )
+				serialized.writeSerializedFloat32(   imag(x.(complex64))   )
 				serialized.WriteString("}")
 			case complex128:
 				serialized.WriteString("a:2:{s:4:\"real\";")
-				serialized.WriteString(   serializeFloat64(real(x.(complex128)))   )
+				serialized.writeSerializedFloat64(   real(x.(complex128))   )
 				serialized.WriteString("s:4:\"imag\";")
-				serialized.WriteString(   serializeFloat64(imag(x.(complex128)))   )
+				serialized.writeSerializedFloat64(   imag(x.(complex128))   )
 				serialized.WriteString("}")
 
 			//case byte:
@@ -125,12 +130,13 @@ func Serialize(x interface{}) string {
 		return serialized.String()
 }
 
-func serializeFloat32(x float32) string {
-//@TODO
-	return ""
+func (me *myByteBuffer) writeSerializedFloat32(x float32) {
+	me.WriteString("")
 }
 
-func serializeFloat64(x float64) string {
-//@TODO
-	return ""
+func (me *myByteBuffer) writeSerializedFloat64(x float64) {
+	me.WriteString("")
 }
+
+
+
