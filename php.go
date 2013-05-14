@@ -2,12 +2,6 @@ package php
 
 
 
-import (
-	"strconv"
-)
-
-
-
 func IsNumeric(x interface{}) bool {
 
 	// Initialize
