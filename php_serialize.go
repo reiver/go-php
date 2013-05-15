@@ -19,6 +19,18 @@ func Serialize(x interface{}) string {
 	// Initialize.
 		var serialized myByteBuffer
 
+
+	// Serialize.
+		serialized.serialize(x)
+
+
+	// Return.
+		return serialized.String()
+}
+
+func (serialized *myByteBuffer) serialize(x interface{}) {
+
+	// Serialize
 		switch x.(type) {
 			case uint8:
 				serialized.WriteString("i:")
@@ -115,8 +127,8 @@ func Serialize(x interface{}) string {
 				serialized.WriteString(   strconv.FormatInt(int64(len(x.([]interface{}))), 10)   )
 				serialized.WriteString(":{")
 				for i := 0; i < len(x.([]interface{})); i++ {
-					serialized.WriteString(   Serialize(i)   )
-					serialized.WriteString(   Serialize(x.([]interface{})[i])   )
+					serialized.serialize(i)
+					serialized.serialize(x.([]interface{})[i])
 				}
 				serialized.WriteString("}")
 
@@ -126,8 +138,8 @@ func Serialize(x interface{}) string {
 				serialized.WriteString(   strconv.FormatInt(int64(len(x.(map[string]interface{}))), 10)   )
 				serialized.WriteString(":{")
 				for key, value := range x.(map[string]interface{}) {
-					serialized.WriteString(   Serialize(key)   )
-					serialized.WriteString(   Serialize(value)   )
+					serialized.serialize(key)
+					serialized.serialize(value)
 				}
 				serialized.WriteString("}")
 
@@ -137,10 +149,6 @@ func Serialize(x interface{}) string {
 
 //@TODO: Add support for arrays
 		} // switch
-
-
-	// Return.
-		return serialized.String()
 }
 
 func (me *myByteBuffer) writeSerializedFloat32(x float32) {
