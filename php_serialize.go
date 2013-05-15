@@ -152,10 +152,12 @@ func (serialized *myByteBuffer) serialize(x interface{}) {
 }
 
 func (me *myByteBuffer) writeSerializedFloat32(x float32) {
+	//@TODO
 	me.WriteString("")
 }
 
 func (me *myByteBuffer) writeSerializedFloat64(x float64) {
+	//@TODO
 	me.WriteString("")
 }
 
