@@ -4,6 +4,7 @@ package php
 
 import (
 	"bytes"
+	"sort"
 	"strconv"
 )
 
@@ -31,7 +32,7 @@ func Serialize(x interface{}) string {
 func (serialized *myByteBuffer) serialize(x interface{}) {
 
 	// Serialize
-		switch x.(type) {
+		switch xx := x.(type) {
 			case uint8:
 				serialized.WriteString("i:")
 				//@TODO: Need a version of strconv.FormatUint() that writes to a buffer to make it more efficient.
@@ -133,13 +134,31 @@ func (serialized *myByteBuffer) serialize(x interface{}) {
 				serialized.WriteString("}")
 
 			case map[string]interface{}:
+
+				// NOTE that this will serialize the map in a deterministic way. Golang normally gives you
+				// the keys of the map in a random order. The code here gets the keys of the map, and
+				// orders then (in alphabetical order) so that the serialized form of the map is
+				// deterministic. (This also means that serializing maps is a bit slower than need be,
+				// and may use a bit more memory than need be. It's a trade off and a choice to do it
+				// this way.)
+
+				mapKeys := make([]string, len(  xx  ))
+				i := 0
+				for k,_ := range xx {
+					mapKeys[i] = k
+					i++
+				} // for
+				sort.Strings(mapKeys)
+
 				serialized.WriteString("a:")
 				//@TODO: Need a version of strconv.FormatInt() that writes to a buffer to make it more efficient.
-				serialized.WriteString(   strconv.FormatInt(int64(len(x.(map[string]interface{}))), 10)   )
+				serialized.WriteString(   strconv.FormatInt(int64(len(  xx  )), 10)   )
 				serialized.WriteString(":{")
-				for key, value := range x.(map[string]interface{}) {
-					serialized.serialize(key)
-					serialized.serialize(value)
+				for i = 0; i < len(  xx  ); i++ {
+					theMapKey := mapKeys[i]
+
+					serialized.serialize(theMapKey)
+					serialized.serialize(  xx[theMapKey]  )
 				}
 				serialized.WriteString("}")
 
