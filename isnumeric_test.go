@@ -1,663 +1,783 @@
-package php
+package php_test
 
 import (
 	"testing"
+
+	"github.com/reiver/go-php"
 )
 
-func TestIsNumericUint8(t *testing.T) {
+func TestIsNumeric_uint8(t *testing.T) {
 
-	var x uint8
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint8 [%v]", x)
+	tests := []struct{
+		Value uint8
+	}{
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint8 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint8 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint8 [%v]", x)
-	}
-
-	x = 255
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint8 [%v]", x)
-	}
-}
-
-func TestIsNumericUint16(t *testing.T) {
-
-	var x uint16
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint16 [%v]", x)
-	}
-
-	x = 5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint16 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint16 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint16 [%v]", x)
-	}
-
-	x = 255
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint16 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericUint32(t *testing.T) {
+func TestIsNumeric_uint16(t *testing.T) {
 
-	var x uint32
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint32 [%v]", x)
+	tests := []struct{
+		Value uint16
+	}{
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint32 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint32 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint32 [%v]", x)
-	}
-
-	x = 255
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint32 [%v]", x)
-	}
-}
-
-func TestIsNumericUint64(t *testing.T) {
-
-	var x uint64
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint64 [%v]", x)
-	}
-
-	x = 5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint64 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint64 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint64 [%v]", x)
-	}
-
-	x = 255
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint64 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericInt8(t *testing.T) {
+func TestIsNumeric_uint32(t *testing.T) {
 
-	var x int8
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
+	tests := []struct{
+		Value uint32
+	}{
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = -5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = -1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = -123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = 127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
-	}
-
-	x = -127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int8 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericInt16(t *testing.T) {
+func TestIsNumeric_uint64(t *testing.T) {
 
-	var x int16
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
+	tests := []struct{
+		Value uint64
+	}{
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = -5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = -1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = -123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = 127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
-	}
-
-	x = -127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int16 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericInt32(t *testing.T) {
+func TestIsNumeric_int8(t *testing.T) {
 
-	var x int32
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
+	tests := []struct{
+		Value int8
+	}{
+		{
+			Value: -127,
+		},
+		{
+			Value: -123,
+		},
+		{
+			Value: -5,
+		},
+		{
+			Value: -1,
+		},
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = -5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = -1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = -123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = 127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
-	}
-
-	x = -127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int32 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericInt64(t *testing.T) {
+func TestIsNumeric_int16(t *testing.T) {
 
-	var x int64
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
+	tests := []struct{
+		Value int16
+	}{
+		{
+			Value: -255,
+		},
+		{
+			Value: -127,
+		},
+		{
+			Value: -123,
+		},
+		{
+			Value: -5,
+		},
+		{
+			Value: -1,
+		},
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = -5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = -1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = -123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = 127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
-	}
-
-	x = -127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int64 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericFloat32(t *testing.T) {
+func TestIsNumeric_int32(t *testing.T) {
 
-	var x float32
-
-	x = 0.0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float32 [%v]", x)
+	tests := []struct{
+		Value int32
+	}{
+		{
+			Value: -255,
+		},
+		{
+			Value: -127,
+		},
+		{
+			Value: -123,
+		},
+		{
+			Value: -5,
+		},
+		{
+			Value: -1,
+		},
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 1.0
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float32 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 
-	x = -1.0
+}
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float32 [%v]", x)
+func TestIsNumeric_int64(t *testing.T) {
+
+	tests := []struct{
+		Value int64
+	}{
+		{
+			Value: -255,
+		},
+		{
+			Value: -127,
+		},
+		{
+			Value: -123,
+		},
+		{
+			Value: -5,
+		},
+		{
+			Value: -1,
+		},
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = 12.34
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float32 [%v]", x)
-	}
-
-	x = -12.34
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float32 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %d", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericFloat64(t *testing.T) {
+func TestIsNumeric_float32(t *testing.T) {
 
-	var x float64
-
-	x = 0.0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float64 [%v]", x)
+	tests := []struct{
+		Value float32
+	}{
+		{
+			Value: -255.0,
+		},
+		{
+			Value: -127.0,
+		},
+		{
+			Value: -123.0,
+		},
+		{
+			Value: -12.34,
+		},
+		{
+			Value: -5.0,
+		},
+		{
+			Value: -1.0,
+		},
+		{
+			Value: 0.0,
+		},
+		{
+			Value: 1.0,
+		},
+		{
+			Value: 5.0,
+		},
+		{
+			Value: 12.34,
+		},
+		{
+			Value: 123.0,
+		},
+		{
+			Value: 255.0,
+		},
 	}
 
-	x = 1.0
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float64 [%v]", x)
-	}
-
-	x = -1.0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float64 [%v]", x)
-	}
-
-	x = 12.34
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float64 [%v]", x)
-	}
-
-	x = -12.34
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for float64 [%v]", x)
-	}
-}
-
-func TestIsNumericComplex64(t *testing.T) {
-
-	var x complex64
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
-	}
-
-	x = 1i
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
-	}
-
-	x = -1i
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
-	}
-
-	x = 12.34i
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
-	}
-
-	x = -12.34i
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
-	}
-
-	x = 12.34 + 56.78i
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
-	}
-
-	x = -12.34 + -56.78i
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for complex64 [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %v", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericUint(t *testing.T) {
+func TestIsNumeric_float64(t *testing.T) {
 
-	var x uint
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint [%v]", x)
+	tests := []struct{
+		Value float64
+	}{
+		{
+			Value: -255.0,
+		},
+		{
+			Value: -127.0,
+		},
+		{
+			Value: -123.0,
+		},
+		{
+			Value: -12.34,
+		},
+		{
+			Value: -5.0,
+		},
+		{
+			Value: -1.0,
+		},
+		{
+			Value: 0.0,
+		},
+		{
+			Value: 1.0,
+		},
+		{
+			Value: 5.0,
+		},
+		{
+			Value: 12.34,
+		},
+		{
+			Value: 123.0,
+		},
+		{
+			Value: 255.0,
+		},
 	}
 
-	x = 5
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint [%v]", x)
-	}
-
-	x = 255
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for uint [%v]", x)
-	}
-}
-
-func TestIsNumericInt(t *testing.T) {
-
-	var x int
-
-	x = 0
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = 5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = -5
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = 1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = -1
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = 123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = -123
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = 127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
-	}
-
-	x = -127
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for int [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %v", test.Value)
+			continue
+		}
 	}
 }
 
-func TestIsNumericString(t *testing.T) {
+func TestIsNumeric_complex64(t *testing.T) {
 
-	var x string
-
-	x = "0"
-
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for string [%v]", x)
+	tests := []struct{
+		Value complex64
+	}{
+		{
+			Value: -255,
+		},
+		{
+			Value: -127,
+		},
+		{
+			Value: -123,
+		},
+		{
+			Value: -12.34i,
+		},
+		{
+			Value: -5,
+		},
+		{
+			Value: -1i,
+		},
+		{
+			Value: -1,
+		},
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 1i,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 12.34i,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = "123"
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for string [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %v", test.Value)
+			continue
+		}
+	}
+}
+
+func TestIsNumeric_complex128(t *testing.T) {
+
+	tests := []struct{
+		Value complex128
+	}{
+		{
+			Value: -255,
+		},
+		{
+			Value: -127,
+		},
+		{
+			Value: -123,
+		},
+		{
+			Value: -12.34i,
+		},
+		{
+			Value: -5,
+		},
+		{
+			Value: -1i,
+		},
+		{
+			Value: -1,
+		},
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 1i,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 12.34i,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = "-123"
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for string [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %v", test.Value)
+			continue
+		}
+	}
+}
+
+func TestIsNumeric_uint(t *testing.T) {
+
+	tests := []struct{
+		Value uint
+	}{
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = "123.45"
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for string [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %v", test.Value)
+			continue
+		}
+	}
+}
+
+func TestIsNumeric_int(t *testing.T) {
+
+	tests := []struct{
+		Value int
+	}{
+		{
+			Value: 0,
+		},
+		{
+			Value: 1,
+		},
+		{
+			Value: 5,
+		},
+		{
+			Value: 123,
+		},
+		{
+			Value: 127,
+		},
+		{
+			Value: 255,
+		},
 	}
 
-	x = "-123.45"
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if !IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned true for string [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %v", test.Value)
+			continue
+		}
 	}
 
-	x = "apple"
+}
 
-	if IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned false for string [%v]", x)
+func TestIsNumeric_string(t *testing.T) {
+
+	tests := []struct{
+		Value string
+	}{
+		{
+			Value: "-123.45",
+		},
+		{
+			Value: "-123",
+		},
+		{
+			Value: "-12.34",
+		},
+		{
+			Value: "-5",
+		},
+		{
+			Value: "-1",
+		},
+		{
+			Value: "0",
+		},
+		{
+			Value: "1",
+		},
+		{
+			Value: "5",
+		},
+		{
+			Value: "12.34",
+		},
+		{
+			Value: "123",
+		},
+		{
+			Value: "123.45",
+		},
+		{
+			Value: "127",
+		},
+		{
+			Value: "255",
+		},
 	}
 
-	x = "1-23"
+	for testNumber, test := range tests {
+		expected := true
+		actual := php.IsNumeric(test.Value)
 
-	if IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned false for string [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %q", test.Value)
+			continue
+		}
+	}
+}
+
+func TestIsNumeric_string_fail(t *testing.T) {
+
+	tests := []struct{
+		Value string
+	}{
+		{
+			Value: "apple",
+		},
+		{
+			Value: "1-23",
+		},
+		{
+			Value: "123-",
+		},
+		{
+			Value: ".123",
+		},
+		{
+			Value: "123.",
+		},
+		{
+			Value: "1.2.3",
+		},
 	}
 
-	x = "123-"
+	for testNumber, test := range tests {
+		expected := false
+		actual := php.IsNumeric(test.Value)
 
-	if IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned false for string [%v]", x)
-	}
-
-	x = ".123"
-
-	if IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned false for string [%v]", x)
-	}
-
-	x = "123."
-
-	if IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned false for string [%v]", x)
-	}
-
-	x = "1.2.3"
-
-	if IsNumeric(x) {
-		t.Errorf("IsNumeric() should have returned false for string [%v]", x)
+		if expected != actual {
+			t.Errorf("For test #%d, the actual return value for php.IsNumeric() on a %T is not what was expected.", testNumber, test.Value)
+			t.Logf("EXPECTED: %t", expected)
+			t.Logf("ACTUAL:   %t", actual)
+			t.Logf("VALUE: %q", test.Value)
+			continue
+		}
 	}
 }
