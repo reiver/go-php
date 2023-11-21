@@ -5,60 +5,17 @@ package php
 // https://www.php.net/is_numeric
 func IsNumeric(x interface{}) bool {
 
-	// Initialize
-	result := false
-
 	// Figure out result
-	switch x.(type) {
-	default:
-		result = false
-
-	case uint8:
-		result = true
-	case uint16:
-		result = true
-	case uint32:
-		result = true
-	case uint64:
-		result = true
-
-	case int8:
-		result = true
-	case int16:
-		result = true
-	case int32:
-		result = true
-	case int64:
-		result = true
-
-	case float32:
-		result = true
-	case float64:
-		result = true
-
-	case complex64:
-		result = true
-	case complex128:
-		result = true
-
-		//case byte:
-		//	result = true
-		//case rune:
-		//	result = true
-
-	case uint:
-		result = true
-	case int:
-		result = true
-
+	switch casted := x.(type) {
+	case
+		complex64,complex128,
+		float32,float64,
+		int,int8,int16,int32,int64,
+		uint,uint8,uint16,uint32,uint64:
+		return true
 	case string:
-		if xAsString, ok := x.(string); ok {
-			result = isStringNumeric(xAsString)
-		} else {
-			result = false
-		}
+		return isStringNumeric(casted)
+	default:
+		return false
 	}
-
-	// Return.
-	return result
 }
