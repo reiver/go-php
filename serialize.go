@@ -13,7 +13,29 @@ type myByteBuffer struct {
 // Serialize is meant to be a Go equivalent of the PHP function: serialize().
 //
 // https://www.php.net/serialize
-func Serialize(x interface{}) string {
+//
+// The structure of the PHP seralize format, as seen through Go, is:
+//
+//	|  Type      | Sample Serialization                               |
+//	|------------|----------------------------------------------------|
+//	| nil        | `N;`                                               |
+//      | bool       | `b:0;` `b:1;`                                      |
+//	| complex64  | `a:2:{s:4:"real";d:12.34;s:4:"imag";d:45.67;}`     |
+//	| complex128 | `a:2:{s:4:"real";d:12.34;s:4:"imag";d:45.67;}`     |
+//	| float32    | `d:12.34;` `d:INF;` `d:-INF;` `d:NAN;`             |
+//	| float64    | `d:12.34;` `d:INF;` `d:-INF;` `d:NAN;`             |
+//	| int        | `i:-12345;` `i:12345;`                             |
+//	| int8       | `i:-127;` `i:127;`                                 |
+//	| int16      | `i:-32767;` `i:32767;`                             |
+//	| int32      | `i:-2147483647;` `i:2147483647;`                   |
+//	| int64      | `i:-9223372036854775807;` `i:9223372036854775807;` |
+//	| string     | `s:5:"apple";` `s:6:"banana";` `s:5:"cherry";`     |
+//	| uint       | `i:0;` `i:12345;`                                  |
+//	| uint8      | `i:0;` `i:255;`                                    |
+//	| uint16     | `i:0;` `i:65535;`                                  |
+//	| uint32     | `i:0;` `i:4294967295;`                             |
+//	| uint64     | `i:0;` `i:18446744073709551615;`                   |
+func Serialize(value interface{}) string {
 
 	// Initialize.
 	var serialized myByteBuffer
