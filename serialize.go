@@ -10,6 +10,9 @@ type myByteBuffer struct {
 	bytes.Buffer
 }
 
+// Serialize is meant to be a Go equivalent of the PHP function: serialize().
+//
+// https://www.php.net/serialize
 func Serialize(x interface{}) string {
 
 	// Initialize.
